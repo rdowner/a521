@@ -1,0 +1,114 @@
+Analog Devices AD9984A
+======================
+
+The Analog Devices AD9984A is an analog-to-digital converter (ADC) specialised for video
+digitisation. Full details, including the datasheet, can be found on the `Analog Devices AD9984A
+product page <https://www.analog.com/en/products/ad9984a.html>`_.
+
+The specific part is the AD9984AKSTZ-140, an LQFP-packaged part supporting a maximum pixel clock of
+140MHz.
+
+The key points of the integration of this IC into the design are:
+
+* An external pixel clock (derived from the Amiga's colour clock) is always used.
+* The device supports two sets of inputs (RGB+sync); only input set 0 is used in this design.
+
+
+Power supply and voltages
+-------------------------
+
+The AD9984A requires four power inputs:
+
+* |V_D|, 1.8V. This is the **main power supply**. From the datasheet: These pins supply power to
+  the main elements of the circuit. They should be as quiet and as filtered as possible.
+* |V_DD|, 1.8 - 3.3V. This is the **digital output power supply**. From the datasheet: A large number of
+  output pins (up to 35) switching at high speed (up to 170 MHz) generates large amounts of power
+  supply transients (noise). These supply pins are identified separately from the |V_D| pins. As a
+  result, special care must be taken to minimize output noise transferred into the sensitive analog
+  circuitry. If the AD9984A is interfacing with lower voltage logic, |V_DD| can be connected to a
+  lower supply voltage (as low as 1.8 V) for compatibility.
+* |PV_D|, 1.8V. This is the **PLL power supply**. From the datasheet: The most sensitive portion
+  of the AD9984A is the clock generation circuitry. These pins provide power to the clock PLL and
+  help the user design for optimal performance. The designer should provide quiet, noise-free power
+  to these pins.
+* |DAV_DD|, 1.8V. This is the **digital input power supply**. From the datasheet: This supplies
+  power to the digital logic. It is recommended to connect this pin to the |V_D| supply.
+
+The FPGA module's GPIO pins all use the 3.3V I/O standard, therefore, |V_DD| will be connected to
+the 3.3V supply from the FPGA module. There is the recommendation to connect |V_D| and |DAV_DD| to
+the same 1.8V supply. |PV_D| is also 1.8V and we will connect this to the same supply on the
+assumption (yet to be tested) that this will be adequate (after all, we will not be using the PLL
+in this design). To get a 1.8V supply, the simplest solution will be a basic voltage divider of the
+3.3V supply from the FPGA module.
+
+Digital inputs can tolerate up to 5V. This means that the Amiga's HSYNC and VSYNC can be connected
+directly, if required.
+
+
+Input pins
+----------
+
+The following inputs are used (with reference to Table 4 in the datasheet):
+
+* R\ :sub:`AIN0`, G\ :sub:`AIN0`, B\ :sub:`AIN0` - analog red, green and blue signals from the
+  Amiga. Note that these must be terminated and coupled according to Figure 4 of the datasheet.
+* HSYNC0 and VSYNC0 - these are connected to the Amiga's HSYNC and VSYNC. These do not need
+  termination, although TBD if buffering is appropriate (in the current design they are connected
+  directly).
+* EXTCK - this is connected to the PLL output and represents the Amiga's pixel clock.
+* PWRDN - TBC
+
+The following inputs are not used in this design:
+
+* R\ :sub:`AIN1`, G\ :sub:`AIN1`, B\ :sub:`AIN1`
+* HSYNC1 and VSYNC1
+* SOGIN0 and SOGIN1 - not used and left unconnected in accordance with the datasheet.
+* CLAMP - not used and left unconnected in accordance with the datasheet.
+* COAST - this shares a pin with EXTCK. The COAST function of the pin is ignored.
+
+
+Reference pins
+--------------
+
+* REFLO and REFHI must be connected to each other with a 10µF capacitor, as shown in Figure 6 of
+  the datasheet.
+* FILT is required for the best stability of the AD9984A's internal PLL. We do not use the internal
+  PLL, but the datasheet is not clear if this means the circuit to do this is optional. Since the
+  required circuit is simple (see Figure 8 in the datasheet), we implement it for completeness and
+  to allow the option of using the internal PLL in future.
+
+
+Control pins
+------------
+
+SDA and SCL are standard I\ :sup:`2`\ C pins, which are passed through to the FPGA module directly.
+
+The A0 pin - which is shared with the VSOUT function - is intended to be logic low. The datasheet
+describes how to combine the VSOUT/A0 function to read a logic high - in the absence of details of
+the opposite we will assume that nothing needs to be done for it to read logic low.
+
+
+Output pins
+-----------
+
+The output pins are:
+
+* 10 each of RED, GREEN and BLUE. As the interface to the FPGA module is limited to 36 GPIOs, we
+  cannot afford to forward the full 30 outputs. We therefore using the AD9984A in its DDR mode,
+  which only requires 15 pins (R[9:0] and G[9:5]).
+* DATACK - passed through to FPGA module.
+* HSOUT - passed through to FPGA module.
+* VSOUT - passed through to FPGA module.
+* SOGOUT - this is not strictly required - we do not use sync-on-green. However the pin can be
+  programmed to output other variations of HSYNC which may prove to be useful, so this too its
+  passed through to the FPGA module.
+* O/E FIELD - passed through to FPGA module
+
+
+
+
+
+.. |V_D| replace:: V\ :sub:`D`
+.. |V_DD| replace:: V\ :sub:`DD`
+.. |PV_D| replace:: PV\ :sub:`D`
+.. |DAV_DD| replace:: DAV\ :sub:`DD`

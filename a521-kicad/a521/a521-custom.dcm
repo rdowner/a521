@@ -1,0 +1,8 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP AD9984AKST
+D Analog Devices AD9984A 80-Lead LQFP High Performance10-Bit Display Interface
+F https://www.analog.com/media/en/technical-documentation/data-sheets/AD9984A.pdf
+$ENDCMP
+#
+#End Doc Library

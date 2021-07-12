@@ -1,0 +1,411 @@
+EESchema Schematic File Version 4
+LIBS:a521-cache
+EELAYER 29 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "A521 Amiga Video to HDMI"
+Date ""
+Rev "1"
+Comp "Richard Downer"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_02x20_Odd_Even J2
+U 1 1 5FCA312A
+P 9150 3000
+F 0 "J2" H 9200 4117 50  0000 C CNN
+F 1 "Conn_02x20_Odd_Even" H 9200 4026 50  0000 C CNN
+F 2 "" H 9150 3000 50  0001 C CNN
+F 3 "~" H 9150 3000 50  0001 C CNN
+	1    9150 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5VD #PWR0101
+U 1 1 5FCA51DF
+P 7950 2600
+F 0 "#PWR0101" H 7950 2450 50  0001 C CNN
+F 1 "+5VD" H 7965 2773 50  0000 C CNN
+F 2 "" H 7950 2600 50  0001 C CNN
+F 3 "" H 7950 2600 50  0001 C CNN
+	1    7950 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 2600 8950 2600
+$Comp
+L power:+3V3 #PWR0102
+U 1 1 5FCA66EA
+P 7950 3500
+F 0 "#PWR0102" H 7950 3350 50  0001 C CNN
+F 1 "+3V3" H 7965 3673 50  0000 C CNN
+F 2 "" H 7950 3500 50  0001 C CNN
+F 3 "" H 7950 3500 50  0001 C CNN
+	1    7950 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 3500 8950 3500
+$Comp
+L power:GND #PWR0103
+U 1 1 5FCA6F79
+P 10100 3500
+F 0 "#PWR0103" H 10100 3250 50  0001 C CNN
+F 1 "GND" H 10105 3327 50  0000 C CNN
+F 2 "" H 10100 3500 50  0001 C CNN
+F 3 "" H 10100 3500 50  0001 C CNN
+	1    10100 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 3500 10100 3500
+Wire Wire Line
+	10100 3500 10100 2600
+Wire Wire Line
+	10100 2600 9450 2600
+Connection ~ 10100 3500
+$Comp
+L a521-custom:AD9984AKST U2
+U 1 1 5FC89D50
+P 4300 3600
+F 0 "U2" H 4325 6131 50  0000 C CNN
+F 1 "AD9984AKST" H 4325 6040 50  0000 C CNN
+F 2 "" H 8700 4650 50  0001 C CNN
+F 3 "https://www.analog.com/media/en/technical-documentation/data-sheets/AD9984A.pdf" H 8700 4650 50  0001 C CNN
+	1    4300 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0104
+U 1 1 5D5F4BAF
+P 1500 6000
+F 0 "#PWR0104" H 1500 5850 50  0001 C CNN
+F 1 "+5V" H 1515 6173 50  0000 C CNN
+F 2 "" H 1500 6000 50  0001 C CNN
+F 3 "" H 1500 6000 50  0001 C CNN
+	1    1500 6000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 6300 1500 6150
+Wire Wire Line
+	700  6800 700  6150
+Wire Wire Line
+	700  6150 1500 6150
+Connection ~ 1500 6150
+Wire Wire Line
+	1500 6150 1500 6000
+Connection ~ 700  6800
+Wire Wire Line
+	700  6900 700  6800
+Wire Wire Line
+	1100 6900 700  6900
+Wire Wire Line
+	1100 6800 700  6800
+Wire Wire Line
+	1500 7200 1500 7500
+$Comp
+L power:GND #PWR0105
+U 1 1 5D5F4172
+P 1500 7500
+F 0 "#PWR0105" H 1500 7250 50  0001 C CNN
+F 1 "GND" H 1505 7327 50  0000 C CNN
+F 2 "" H 1500 7500 50  0001 C CNN
+F 3 "" H 1500 7500 50  0001 C CNN
+	1    1500 7500
+	1    0    0    -1  
+$EndComp
+Text GLabel 2300 6800 2    50   Input ~ 0
+PIXCLK
+Wire Wire Line
+	2300 6800 1900 6800
+Text GLabel 1000 6600 0    50   Input ~ 0
+CCLK
+$Comp
+L Oscillator:NB3N511 U1
+U 1 1 5D5ED1CF
+P 1500 6800
+F 0 "U1" H 1950 7150 50  0000 L CNN
+F 1 "NB3N511" H 1950 7050 50  0000 L CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 1550 6050 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub/Collateral/NB3N511-D.PDF" H 1550 5950 50  0001 C CNN
+	1    1500 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 6600 1000 6600
+Wire Wire Line
+	2700 3450 3050 3450
+Entry Wire Line
+	6000 3850 6100 3950
+Entry Wire Line
+	6000 3950 6100 4050
+Entry Wire Line
+	6000 4050 6100 4150
+Entry Wire Line
+	6000 4150 6100 4250
+Entry Wire Line
+	6000 4250 6100 4350
+Entry Wire Line
+	6000 4350 6100 4450
+Entry Wire Line
+	6000 4450 6100 4550
+Entry Wire Line
+	6000 4550 6100 4650
+Entry Wire Line
+	6000 4650 6100 4750
+Entry Wire Line
+	6000 4750 6100 4850
+Wire Wire Line
+	5600 3850 6000 3850
+Wire Wire Line
+	5600 3950 6000 3950
+Wire Wire Line
+	5600 4050 6000 4050
+Wire Wire Line
+	6000 4150 5600 4150
+Wire Wire Line
+	5600 4250 6000 4250
+Wire Wire Line
+	6000 4350 5600 4350
+Wire Wire Line
+	5600 4450 6000 4450
+Wire Wire Line
+	6000 4550 5600 4550
+Wire Wire Line
+	5600 4650 6000 4650
+Wire Wire Line
+	6000 4750 5600 4750
+Entry Wire Line
+	6000 3700 6100 3800
+Entry Wire Line
+	6000 3600 6100 3700
+Entry Wire Line
+	6000 3500 6100 3600
+Entry Wire Line
+	6000 3400 6100 3500
+Entry Wire Line
+	6000 3300 6100 3400
+Entry Wire Line
+	6000 3200 6100 3300
+Entry Wire Line
+	6000 3100 6100 3200
+Entry Wire Line
+	6000 3000 6100 3100
+Entry Wire Line
+	6000 2900 6100 3000
+Entry Wire Line
+	6000 2800 6100 2900
+Entry Wire Line
+	6000 2650 6100 2750
+Entry Wire Line
+	6000 2550 6100 2650
+Entry Wire Line
+	6000 2450 6100 2550
+Entry Wire Line
+	6000 2350 6100 2450
+Entry Wire Line
+	6000 2250 6100 2350
+Entry Wire Line
+	6000 2150 6100 2250
+Entry Wire Line
+	6000 2050 6100 2150
+Entry Wire Line
+	6000 1950 6100 2050
+Entry Wire Line
+	6000 1850 6100 1950
+Entry Wire Line
+	6000 1750 6100 1850
+Wire Wire Line
+	6000 3700 5600 3700
+Wire Wire Line
+	5600 3600 6000 3600
+Wire Wire Line
+	6000 3500 5600 3500
+Wire Wire Line
+	5600 3400 6000 3400
+Wire Wire Line
+	5600 3300 6000 3300
+Wire Wire Line
+	6000 3200 5600 3200
+Wire Wire Line
+	5600 3100 6000 3100
+Wire Wire Line
+	6000 3000 5600 3000
+Wire Wire Line
+	5600 2900 6000 2900
+Wire Wire Line
+	6000 2800 5600 2800
+Wire Wire Line
+	5600 2650 6000 2650
+Wire Wire Line
+	6000 2550 5600 2550
+Wire Wire Line
+	5600 2450 6000 2450
+Wire Wire Line
+	6000 2350 5600 2350
+Wire Wire Line
+	5600 2250 6000 2250
+Wire Wire Line
+	6000 2150 5600 2150
+Wire Wire Line
+	5600 2050 6000 2050
+Wire Wire Line
+	6000 1950 5600 1950
+Wire Wire Line
+	5600 1850 6000 1850
+Wire Wire Line
+	6000 1750 5600 1750
+Wire Bus Line
+	6100 2750 6300 2750
+Wire Bus Line
+	6100 3800 6300 3800
+Wire Bus Line
+	6100 4850 6300 4850
+Text GLabel 6300 2750 2    50   Input ~ 0
+RED[0..9]
+Text GLabel 6300 3800 2    50   Input ~ 0
+GREEN[0..9]
+Text GLabel 6300 4850 2    50   Input ~ 0
+BLUE[0..9]
+Text GLabel 2700 3450 0    50   Input ~ 0
+PIXCLK
+Wire Wire Line
+	3050 1750 1200 1750
+Wire Wire Line
+	1200 1850 3050 1850
+Wire Wire Line
+	3050 1950 1200 1950
+Wire Wire Line
+	1200 2050 3050 2050
+Wire Wire Line
+	3050 2150 1200 2150
+Wire Wire Line
+	1200 2250 1850 2250
+Text GLabel 1850 2250 2    50   Input ~ 0
+CCLK
+Wire Wire Line
+	1750 2350 1200 2350
+Wire Wire Line
+	1750 2650 1750 2350
+$Comp
+L Connector_Generic:Conn_01x08 J1
+U 1 1 5FCA10D7
+P 1000 1950
+F 0 "J1" H 918 2467 50  0000 C CNN
+F 1 "Conn_01x08" H 918 2376 50  0000 C CNN
+F 2 "" H 1000 1950 50  0001 C CNN
+F 3 "~" H 1000 1950 50  0001 C CNN
+	1    1000 1950
+	-1   0    0    -1  
+$EndComp
+Text Notes 650  2450 0    50   ~ 0
+Amiga Video Input
+$Comp
+L power:GND #PWR0106
+U 1 1 5FC9E652
+P 1750 2650
+F 0 "#PWR0106" H 1750 2400 50  0001 C CNN
+F 1 "GND" H 1755 2477 50  0000 C CNN
+F 2 "" H 1750 2650 50  0001 C CNN
+F 3 "" H 1750 2650 50  0001 C CNN
+	1    1750 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 1650 1200 1650
+Wire Wire Line
+	1750 950  1750 1650
+$Comp
+L power:+5VD #PWR0107
+U 1 1 5FC9DEB7
+P 1750 950
+F 0 "#PWR0107" H 1750 800 50  0001 C CNN
+F 1 "+5VD" H 1765 1123 50  0000 C CNN
+F 2 "" H 1750 950 50  0001 C CNN
+F 3 "" H 1750 950 50  0001 C CNN
+	1    1750 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0108
+U 1 1 5FCC172A
+P 4800 6100
+F 0 "#PWR0108" H 4800 5850 50  0001 C CNN
+F 1 "GND" H 4805 5927 50  0000 C CNN
+F 2 "" H 4800 6100 50  0001 C CNN
+F 3 "" H 4800 6100 50  0001 C CNN
+	1    4800 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 5750 4800 6000
+Wire Wire Line
+	4700 5750 4700 6000
+Wire Wire Line
+	4700 6000 4800 6000
+Connection ~ 4800 6000
+Wire Wire Line
+	4800 6000 4800 6100
+Wire Wire Line
+	4600 5750 4600 6000
+Wire Wire Line
+	4600 6000 4700 6000
+Connection ~ 4700 6000
+Wire Wire Line
+	4500 5750 4500 6000
+Wire Wire Line
+	4500 6000 4600 6000
+Connection ~ 4600 6000
+Wire Wire Line
+	4400 5750 4400 6000
+Wire Wire Line
+	4400 6000 4500 6000
+Connection ~ 4500 6000
+Wire Wire Line
+	4300 5750 4300 6000
+Wire Wire Line
+	4300 6000 4400 6000
+Connection ~ 4400 6000
+Wire Wire Line
+	4200 5750 4200 6000
+Wire Wire Line
+	4200 6000 4300 6000
+Connection ~ 4300 6000
+Wire Wire Line
+	4100 5750 4100 6000
+Wire Wire Line
+	4100 6000 4200 6000
+Connection ~ 4200 6000
+Wire Wire Line
+	4000 5750 4000 6000
+Wire Wire Line
+	4000 6000 4100 6000
+Connection ~ 4100 6000
+Wire Wire Line
+	3900 5750 3900 6000
+Wire Wire Line
+	3900 6000 4000 6000
+Connection ~ 4000 6000
+Wire Wire Line
+	3800 5750 3800 6000
+Wire Wire Line
+	3800 6000 3900 6000
+Connection ~ 3900 6000
+Wire Wire Line
+	3700 5750 3700 6000
+Wire Wire Line
+	3700 6000 3800 6000
+Connection ~ 3800 6000
+Wire Bus Line
+	6100 3950 6100 4850
+Wire Bus Line
+	6100 2900 6100 3800
+Wire Bus Line
+	6100 1850 6100 2750
+$EndSCHEMATC
